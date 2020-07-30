@@ -15,23 +15,23 @@
  */
 package com.squareup.sqlbrite3;
 
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.Build;
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.CheckResult;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.WorkerThread;
 import android.util.Log;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableOperator;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.core.ObservableOperator;
+import io.reactivex.rxjava3.core.ObservableTransformer;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.functions.Function;
 import java.util.List;
 import java.util.Optional;
 
@@ -233,6 +233,10 @@ public final class SqlBrite {
             try {
               while (cursor.moveToNext() && !e.isDisposed()) {
                 e.onNext(mapper.apply(cursor));
+              }
+            } catch (Throwable throwable) {
+              if (!e.isDisposed()) {
+                e.onError(throwable);
               }
             } finally {
               cursor.close();

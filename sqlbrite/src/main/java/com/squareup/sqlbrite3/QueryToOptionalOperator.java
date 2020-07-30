@@ -17,13 +17,13 @@ package com.squareup.sqlbrite3;
 
 import android.database.Cursor;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import io.reactivex.ObservableOperator;
-import io.reactivex.Observer;
-import io.reactivex.exceptions.Exceptions;
-import io.reactivex.functions.Function;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.plugins.RxJavaPlugins;
+import androidx.annotation.RequiresApi;
+import io.reactivex.rxjava3.core.ObservableOperator;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.exceptions.Exceptions;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.observers.DisposableObserver;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import java.util.Optional;
 
 @RequiresApi(Build.VERSION_CODES.N)

@@ -17,7 +17,7 @@ package com.squareup.sqlbrite3;
 
 import android.database.Cursor;
 import android.util.Log;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.rxjava3.observers.DisposableObserver;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 

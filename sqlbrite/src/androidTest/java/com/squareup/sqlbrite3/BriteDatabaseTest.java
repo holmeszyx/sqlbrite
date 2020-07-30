@@ -16,29 +16,24 @@
 package com.squareup.sqlbrite3;
 
 import android.annotation.TargetApi;
-import android.arch.persistence.db.SimpleSQLiteQuery;
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.db.SupportSQLiteOpenHelper.Configuration;
-import android.arch.persistence.db.SupportSQLiteOpenHelper.Factory;
-import android.arch.persistence.db.SupportSQLiteStatement;
-import android.arch.persistence.db.framework.FrameworkSQLiteOpenHelperFactory;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration;
+import androidx.sqlite.db.SupportSQLiteOpenHelper.Factory;
+import androidx.sqlite.db.SupportSQLiteStatement;
+import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteException;
 import android.os.Build;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.filters.SdkSuppress;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.squareup.sqlbrite3.BriteDatabase.Transaction;
 import com.squareup.sqlbrite3.RecordingObserver.CursorAssert;
 import com.squareup.sqlbrite3.TestDb.Employee;
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.functions.Consumer;
-import io.reactivex.subjects.PublishSubject;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,6 +49,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableSource;
+import io.reactivex.rxjava3.core.ObservableTransformer;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 import static android.database.sqlite.SQLiteDatabase.CONFLICT_IGNORE;
 import static android.database.sqlite.SQLiteDatabase.CONFLICT_NONE;
@@ -86,7 +87,7 @@ public final class BriteDatabaseTest {
   private BriteDatabase db;
 
   @Before public void setUp() throws IOException {
-    Configuration configuration = Configuration.builder(InstrumentationRegistry.getContext())
+    Configuration configuration = Configuration.builder(InstrumentationRegistry.getInstrumentation().getContext())
         .callback(testDb)
         .name(dbFolder.newFile().getPath())
         .build();
@@ -740,7 +741,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  ////@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void executeUpdateDeleteAndTrigger() {
     SupportSQLiteStatement statement = real.compileStatement(
         "UPDATE " + TABLE_EMPLOYEE + " SET " + NAME + " = 'Zach'");
@@ -761,7 +762,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  ////@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void executeUpdateDeleteAndDontTrigger() {
     SupportSQLiteStatement statement = real.compileStatement(""
         + "UPDATE " + TABLE_EMPLOYEE
@@ -780,7 +781,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  //@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void executeUpdateDeleteAndTriggerWithMultipleTables() {
     SupportSQLiteStatement statement = real.compileStatement(
         "UPDATE " + TABLE_EMPLOYEE + " SET " + NAME + " = 'Zach'");
@@ -813,7 +814,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  //@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void executeUpdateDeleteAndTriggerWithNoTables() {
     SupportSQLiteStatement statement = real.compileStatement(
         "UPDATE " + TABLE_EMPLOYEE + " SET " + NAME + " = 'Zach'");
@@ -831,7 +832,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  //@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void executeUpdateDeleteThrowsAndDoesNotTrigger() {
     SupportSQLiteStatement statement = real.compileStatement(
         "UPDATE " + TABLE_EMPLOYEE + " SET " + USERNAME + " = 'alice'");
@@ -849,7 +850,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  //@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void executeUpdateDeleteWithArgsAndTrigger() {
     SupportSQLiteStatement statement = real.compileStatement(
         "UPDATE " + TABLE_EMPLOYEE + " SET " + NAME + " = ?");
@@ -871,7 +872,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  //@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void executeUpdateDeleteWithArgsThrowsAndDoesNotTrigger() {
     SupportSQLiteStatement statement = real.compileStatement(
         "UPDATE " + TABLE_EMPLOYEE + " SET " + USERNAME + " = ?");
@@ -1257,7 +1258,7 @@ public final class BriteDatabaseTest {
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  @SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
+  //@SdkSuppress(minSdkVersion = Build.VERSION_CODES.HONEYCOMB)
   @Test public void nonExclusiveTransactionWorks() throws InterruptedException {
     final CountDownLatch transactionStarted = new CountDownLatch(1);
     final CountDownLatch transactionProceed = new CountDownLatch(1);

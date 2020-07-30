@@ -12,7 +12,9 @@ dependencies {
   implementation rootProject.ext.timber
   implementation rootProject.ext.rxJava
   implementation rootProject.ext.rxAndroid
-  implementation rootProject.ext.rxBinding
+  implementation(rootProject.ext.rxBinding) {
+    exclude group: 'io.reactivex.rxjava2'
+  }
 
   compileOnly rootProject.ext.autoValue
   annotationProcessor rootProject.ext.autoValue

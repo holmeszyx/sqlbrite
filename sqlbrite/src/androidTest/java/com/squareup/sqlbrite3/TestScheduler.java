@@ -15,14 +15,14 @@
  */
 package com.squareup.sqlbrite3;
 
-import io.reactivex.Scheduler;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.disposables.Disposable;
 import java.util.concurrent.TimeUnit;
 
 final class TestScheduler extends Scheduler {
-  private final io.reactivex.schedulers.TestScheduler delegate =
-      new io.reactivex.schedulers.TestScheduler();
+  private final io.reactivex.rxjava3.schedulers.TestScheduler delegate =
+      new io.reactivex.rxjava3.schedulers.TestScheduler();
 
   private boolean runTasksImmediately = true;
 

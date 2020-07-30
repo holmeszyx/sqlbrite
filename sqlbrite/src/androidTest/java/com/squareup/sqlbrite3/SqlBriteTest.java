@@ -2,10 +2,10 @@ package com.squareup.sqlbrite3;
 
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.support.annotation.Nullable;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.annotation.Nullable;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.squareup.sqlbrite3.SqlBrite.Query;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.functions.Function;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Test;
@@ -62,7 +62,7 @@ public final class SqlBriteTest {
     Query query = new CursorQuery(cursor);
     final AtomicInteger count = new AtomicInteger();
     query.asRows(new Function<Cursor, Name>() {
-      @Override public Name apply(Cursor cursor) throws Exception {
+      @Override public Name apply(Cursor cursor) throws Throwable {
         count.incrementAndGet();
         return Name.MAP.apply(cursor);
       }
@@ -79,7 +79,7 @@ public final class SqlBriteTest {
 
     final AtomicInteger count = new AtomicInteger();
     nully.asRows(new Function<Cursor, Name>() {
-      @Override public Name apply(Cursor cursor) throws Exception {
+      @Override public Name apply(Cursor cursor) throws Throwable {
         count.incrementAndGet();
         return Name.MAP.apply(cursor);
       }

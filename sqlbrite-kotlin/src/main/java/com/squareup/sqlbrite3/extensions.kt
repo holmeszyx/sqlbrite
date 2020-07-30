@@ -18,10 +18,10 @@
 package com.squareup.sqlbrite3
 
 import android.database.Cursor
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import com.squareup.sqlbrite3.BriteDatabase.Transaction
 import com.squareup.sqlbrite3.SqlBrite.Query
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import java.util.Optional
 
 typealias Mapper<T> = (Cursor) -> T

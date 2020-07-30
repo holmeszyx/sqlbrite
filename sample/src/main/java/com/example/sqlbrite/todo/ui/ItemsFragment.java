@@ -18,9 +18,9 @@ package com.example.sqlbrite.todo.ui;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.core.view.MenuItemCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,21 +35,21 @@ import com.example.sqlbrite.todo.TodoApp;
 import com.example.sqlbrite.todo.db.Db;
 import com.example.sqlbrite.todo.db.TodoItem;
 import com.example.sqlbrite.todo.db.TodoList;
-import com.jakewharton.rxbinding2.widget.AdapterViewItemClickEvent;
-import com.jakewharton.rxbinding2.widget.RxAdapterView;
+import com.jakewharton.rxbinding3.widget.AdapterViewItemClickEvent;
+import com.jakewharton.rxbinding3.widget.RxAdapterView;
 import com.squareup.sqlbrite3.BriteDatabase;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.BiFunction;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import javax.inject.Inject;
 
 import static android.database.sqlite.SQLiteDatabase.CONFLICT_NONE;
-import static android.support.v4.view.MenuItemCompat.SHOW_AS_ACTION_IF_ROOM;
-import static android.support.v4.view.MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT;
+import static androidx.core.view.MenuItemCompat.SHOW_AS_ACTION_IF_ROOM;
+import static androidx.core.view.MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT;
 import static com.squareup.sqlbrite3.SqlBrite.Query;
 
 public final class ItemsFragment extends Fragment {
@@ -138,7 +138,7 @@ public final class ItemsFragment extends Fragment {
     listView.setAdapter(adapter);
 
     RxAdapterView.itemClickEvents(listView) //
-        .observeOn(Schedulers.io())
+        //.observeOn(Schedulers.io())
         .subscribe(new Consumer<AdapterViewItemClickEvent>() {
           @Override public void accept(AdapterViewItemClickEvent event) {
             boolean newValue = !adapter.getItem(event.position()).complete();

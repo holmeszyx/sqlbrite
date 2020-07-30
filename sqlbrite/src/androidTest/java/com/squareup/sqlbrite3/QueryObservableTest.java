@@ -19,8 +19,8 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import com.squareup.sqlbrite3.QueryObservable;
 import com.squareup.sqlbrite3.SqlBrite.Query;
-import io.reactivex.Observable;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.functions.Function;
 import org.junit.Test;
 
 public final class QueryObservableTest {

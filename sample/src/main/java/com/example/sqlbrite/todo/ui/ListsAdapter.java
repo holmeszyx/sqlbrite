@@ -21,9 +21,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import io.reactivex.functions.Consumer;
 import java.util.Collections;
 import java.util.List;
+
+import io.reactivex.rxjava3.functions.Consumer;
 
 final class ListsAdapter extends BaseAdapter implements Consumer<List<ListsItem>> {
   private final LayoutInflater inflater;

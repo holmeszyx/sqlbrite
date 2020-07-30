@@ -21,17 +21,18 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.CheckResult;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.squareup.sqlbrite3.SqlBrite.Logger;
 import com.squareup.sqlbrite3.SqlBrite.Query;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Cancellable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.core.ObservableTransformer;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.functions.Cancellable;
+
 import java.util.Arrays;
 
 import static com.squareup.sqlbrite3.QueryObservable.QUERY_OBSERVABLE;

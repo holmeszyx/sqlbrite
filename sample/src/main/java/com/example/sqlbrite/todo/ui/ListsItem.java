@@ -21,9 +21,10 @@ import com.example.sqlbrite.todo.db.Db;
 import com.example.sqlbrite.todo.db.TodoItem;
 import com.example.sqlbrite.todo.db.TodoList;
 import com.google.auto.value.AutoValue;
-import io.reactivex.functions.Function;
 import java.util.Arrays;
 import java.util.Collection;
+
+import io.reactivex.rxjava3.functions.Function;
 
 @AutoValue
 abstract class ListsItem implements Parcelable {

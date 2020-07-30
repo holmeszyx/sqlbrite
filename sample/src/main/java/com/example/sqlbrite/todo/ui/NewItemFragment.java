@@ -21,21 +21,23 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import com.example.sqlbrite.todo.R;
 import com.example.sqlbrite.todo.TodoApp;
 import com.example.sqlbrite.todo.db.TodoItem;
-import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.jakewharton.rxbinding3.widget.RxTextView;
 import com.squareup.sqlbrite3.BriteDatabase;
-import io.reactivex.Observable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
+
+import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.functions.BiFunction;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 import javax.inject.Inject;
 
 import static android.database.sqlite.SQLiteDatabase.CONFLICT_NONE;
@@ -71,9 +73,11 @@ public final class NewItemFragment extends DialogFragment {
     View view = LayoutInflater.from(context).inflate(R.layout.new_item, null);
 
     EditText name = findById(view, android.R.id.input);
-    Observable.combineLatest(createClicked, RxTextView.textChanges(name),
+    Observable.combineLatest(createClicked.toFlowable(BackpressureStrategy.LATEST)
+                    .toObservable(),
+            RxTextView.textChanges(name),
         new BiFunction<String, CharSequence, String>() {
-          @Override public String apply(String ignored, CharSequence text) {
+          @Override public String apply(String ignored, CharSequence text) throws Throwable {
             return text.toString();
           }
         }) //

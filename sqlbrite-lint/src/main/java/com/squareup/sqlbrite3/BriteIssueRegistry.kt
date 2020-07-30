@@ -16,8 +16,10 @@
 package com.squareup.sqlbrite3
 
 import com.android.tools.lint.client.api.IssueRegistry
+import com.android.tools.lint.detector.api.Issue
 
 class BriteIssueRegistry : IssueRegistry() {
 
-  override fun getIssues() = listOf(SqlBriteArgCountDetector.ISSUE)
+    override val issues: List<Issue>
+        get() = listOf(SqlBriteArgCountDetector.ISSUE)
 }

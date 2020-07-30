@@ -15,30 +15,30 @@
  */
 package com.squareup.sqlbrite3;
 
-import android.arch.persistence.db.SimpleSQLiteQuery;
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.db.SupportSQLiteOpenHelper.Callback;
-import android.arch.persistence.db.SupportSQLiteQuery;
-import android.arch.persistence.db.SupportSQLiteStatement;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import androidx.sqlite.db.SupportSQLiteOpenHelper.Callback;
+import androidx.sqlite.db.SupportSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteStatement;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteTransactionListener;
-import android.support.annotation.CheckResult;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.CheckResult;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import com.squareup.sqlbrite3.SqlBrite.Logger;
 import com.squareup.sqlbrite3.SqlBrite.Query;
-import io.reactivex.Observable;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
-import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subjects.Subject;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableTransformer;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.functions.Predicate;
+import io.reactivex.rxjava3.subjects.PublishSubject;
+import io.reactivex.rxjava3.subjects.Subject;
 import java.io.Closeable;
 import java.lang.annotation.Retention;
 import java.util.Arrays;
@@ -383,7 +383,7 @@ public final class BriteDatabase implements Closeable {
     return triggers //
         .filter(query) // DatabaseQuery filters triggers to on tables we care about.
         .map(query) // DatabaseQuery maps to itself to save an allocation.
-        .startWith(query) //
+        .startWith(Observable.just(query)) //
         .observeOn(scheduler) //
         .compose(queryTransformer) // Apply the user's query transformer.
         .doOnSubscribe(ensureNotInTransaction)

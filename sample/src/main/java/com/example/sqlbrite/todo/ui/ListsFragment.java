@@ -17,9 +17,9 @@ package com.example.sqlbrite.todo.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.core.view.MenuItemCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,15 +30,16 @@ import android.widget.ListView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+
 import com.example.sqlbrite.todo.R;
 import com.example.sqlbrite.todo.TodoApp;
 import com.squareup.sqlbrite3.BriteDatabase;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import javax.inject.Inject;
 
-import static android.support.v4.view.MenuItemCompat.SHOW_AS_ACTION_IF_ROOM;
-import static android.support.v4.view.MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT;
+import static androidx.core.view.MenuItemCompat.SHOW_AS_ACTION_IF_ROOM;
+import static androidx.core.view.MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT;
 
 public final class ListsFragment extends Fragment {
   interface Listener {

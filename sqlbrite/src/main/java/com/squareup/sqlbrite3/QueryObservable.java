@@ -2,20 +2,21 @@ package com.squareup.sqlbrite3;
 
 import android.database.Cursor;
 import android.os.Build;
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.CheckResult;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import com.squareup.sqlbrite3.SqlBrite.Query;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableConverter;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.functions.Function;
 import java.util.List;
 import java.util.Optional;
 
 /** An {@link Observable} of {@link Query} which offers query-specific convenience operators. */
 public final class QueryObservable extends Observable<Query> {
-  static final Function<Observable<Query>, QueryObservable> QUERY_OBSERVABLE =
-      new Function<Observable<Query>, QueryObservable>() {
+  static final ObservableConverter<Query, QueryObservable> QUERY_OBSERVABLE =
+      new ObservableConverter<Query, QueryObservable>() {
         @Override public QueryObservable apply(Observable<Query> queryObservable) {
           return new QueryObservable(queryObservable);
         }

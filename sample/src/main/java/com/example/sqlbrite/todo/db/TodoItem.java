@@ -19,7 +19,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Parcelable;
 import com.google.auto.value.AutoValue;
-import io.reactivex.functions.Function;
+
+import io.reactivex.rxjava3.functions.Function;
 
 @AutoValue
 public abstract class TodoItem implements Parcelable {

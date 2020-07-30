@@ -15,12 +15,12 @@
  */
 package com.squareup.sqlbrite3;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import io.reactivex.functions.Function;
+import androidx.annotation.NonNull;
+import io.reactivex.rxjava3.functions.Function;
 import java.util.Arrays;
 import java.util.Collection;
 
